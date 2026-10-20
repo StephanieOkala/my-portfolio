@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stephanie Onyinyechukwu Okala | Web Developer</title>
+  <meta name="description" content="Stephanie Onyinyechukwu Okala is a web developer in Nigeria building practical, user-friendly web applications with PHP, Laravel, MySQL and JavaScript.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================
+   STYLE GUIDE: change colours and fonts in the :root block.
+   --accent is the single accent colour (muted cobalt).
+   Try #7A2234 for a deep burgundy instead.
+   ========================================================== */
+:root {
+  --bg: #f6f3ec;
+  --surface: #ece8de;
+  --ink: #1d1d1f;
+  --muted: #5d5b57;
+  --line: #d6d1c4;
+  --accent: #2c4a8c;
+  --font-sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-space: clamp(4.5rem, 10vw, 8rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.65 var(--font-sans); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+ul, ol, dl { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.container { width: min(100% - 2 * var(--gutter), 74rem); margin-inline: auto; }
+.skip-link { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: var(--bg); padding: .6rem 1rem; z-index: 100; }
+.skip-link:focus { top: 1rem; }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(246, 243, 236, .94); border-bottom: 1px solid var(--line); }
+.header-inner { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
+.wordmark { text-decoration: none; font-weight: 600; letter-spacing: .02em; margin-right: auto; }
+.wordmark span { font-weight: 400; color: var(--muted); }
+.site-nav { display: flex; gap: 1.75rem; }
+.site-nav a { text-decoration: none; font-size: .95rem; padding: .25rem 0; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.site-nav a:hover { border-color: var(--accent); }
+.availability { display: flex; align-items: center; gap: .5rem; font-size: .85rem; color: var(--muted); }
+.availability:empty { display: none; }
+.dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); }
+.menu-toggle { display: none; font: inherit; background: none; border: 1px solid var(--ink); padding: .35rem .9rem; cursor: pointer; color: var(--ink); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; padding-block: clamp(3rem, 8vw, 6.5rem); }
+.hero h1 { font-size: clamp(2.5rem, 5.6vw, 4.5rem); max-width: 14ch; }
+.lede { margin-top: 1.75rem; max-width: 34rem; font-size: 1.125rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
+.btn { display: inline-block; padding: .8rem 1.5rem; text-decoration: none; font-weight: 500; border: 1px solid var(--ink); transition: background .2s, color .2s, border-color .2s; }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-quiet:hover { border-color: var(--accent); color: var(--accent); }
+.location { margin-top: 2.25rem; font-size: .9rem; color: var(--muted); }
+
+.portrait { margin: 0; max-width: 26rem; justify-self: end; width: 100%; }
+.portrait-frame { position: relative; aspect-ratio: 4 / 5; border: 1px solid var(--ink); padding: .6rem; background: var(--bg); }
+.portrait-frame::after { content: ""; position: absolute; inset: .9rem -.9rem -.9rem .9rem; border: 1px solid var(--accent); z-index: -1; }
+.portrait-frame img, .portrait-placeholder { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.portrait-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; background: var(--surface); color: var(--muted); text-align: center; padding: 1rem; }
+.portrait-placeholder span { font-family: var(--font-serif); font-size: 1.25rem; color: var(--ink); }
+.portrait figcaption { margin-top: 1.5rem; font-size: .85rem; color: var(--muted); }
+
+/* Sections */
+.section { padding-block: var(--section-space); border-top: 1px solid var(--line); }
+.section h2 { font-size: clamp(1.9rem, 3.6vw, 2.75rem); }
+.section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: end; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+.section-head p { color: var(--muted); max-width: 28rem; }
+
+/* Projects: asymmetrical 12-column editorial grid */
+.projects { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(2.5rem, 5vw, 4rem) 2rem; }
+.project { grid-column: span 6; display: flex; flex-direction: column; gap: 1.25rem; }
+.project.is-featured { grid-column: span 12; display: grid; grid-template-columns: 7fr 5fr; gap: 2.5rem; align-items: start; }
+.project.is-wide { grid-column: span 7; }
+.project.is-narrow { grid-column: span 5; }
+.project.is-third { grid-column: span 4; }
+.is-third .project-features { display: none; }
+.project-cover { margin: 0; overflow: hidden; background: var(--surface); border: 1px solid var(--line); aspect-ratio: 4 / 3; }
+.is-featured .project-cover { aspect-ratio: 16 / 10; }
+.is-narrow .project-cover { aspect-ratio: 1 / 1; }
+.project-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.project:hover .project-cover img { transform: scale(1.02); }
+.cover-fallback { height: 100%; display: flex; align-items: flex-end; padding: 1.25rem; font-family: var(--font-serif); font-size: 1.5rem; color: var(--muted); }
+.project-meta { font-size: .85rem; color: var(--muted); }
+.project h3 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin: .35rem 0 .75rem; }
+.is-featured h3 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
+.project-desc { color: var(--muted); max-width: 36rem; }
+.project-problem { margin-top: .9rem; max-width: 36rem; }
+.project-problem strong { font-weight: 600; }
+.project-features { margin-top: 1rem; padding-left: 1.1rem; list-style: disc; font-size: .95rem; max-width: 36rem; }
+.project-features li { margin-bottom: .2rem; }
+.project-tech { margin-top: 1rem; font-size: .85rem; color: var(--accent); font-weight: 500; }
+.project-status { display: inline-block; margin-left: .5rem; padding: .05rem .55rem; border: 1px solid var(--line); border-radius: 2px; }
+.project-links { display: flex; gap: 1.5rem; margin-top: 1.25rem; }
+.project-links a { font-weight: 500; text-decoration: underline; text-underline-offset: .3em; text-decoration-color: var(--line); transition: text-decoration-color .2s, color .2s; }
+.project-links a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+/* About */
+.about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem; }
+.about-body { display: grid; gap: 1.1rem; max-width: 38rem; font-size: 1.1rem; font-family: var(--font-serif); line-height: 1.7; }
+
+/* Skills */
+.skills { margin-top: 2.5rem; border-top: 1px solid var(--ink); }
+.skills div { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.skills dt { color: var(--muted); }
+.skills dd { margin: 0; font-family: var(--font-serif); font-size: 1.35rem; }
+
+/* Process */
+.process { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; counter-reset: step; }
+.process li { counter-increment: step; }
+.process li::before { content: counter(step, decimal-leading-zero); display: block; margin-bottom: 1rem; color: var(--accent); font-weight: 500; }
+.process h3 { font-size: 1.5rem; margin-bottom: .6rem; }
+.process p { color: var(--muted); }
+
+/* Contact */
+.contact p { margin-top: 1rem; color: var(--muted); max-width: 30rem; }
+.contact-list { margin-top: 2rem; display: grid; gap: .5rem; }
+.contact-list a { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2rem); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .25em; transition: color .2s, text-decoration-color .2s; }
+.contact-list a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.contact-list .is-unset { font-size: 1rem; color: var(--muted); font-family: var(--font-sans); }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); padding-block: 2rem; font-size: .9rem; color: var(--muted); }
+.footer-inner { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; }
+.footer-links { display: flex; gap: 1.25rem; }
+.footer-links a:hover { color: var(--accent); }
+
+/* Scroll reveal (only applied when JS runs, and never with reduced motion) */
+.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* Tablet */
+@media (max-width: 62rem) {
+  .availability { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .portrait { justify-self: start; max-width: 22rem; margin-right: .9rem; }
+  .project.is-featured { grid-template-columns: 1fr; gap: 1.25rem; }
+  .project.is-wide, .project.is-narrow, .project.is-third { grid-column: span 6; }
+  .is-narrow .project-cover { aspect-ratio: 4 / 3; }
+  .about, .section-head { grid-template-columns: 1fr; }
+}
+
+/* Mobile */
+@media (max-width: 44rem) {
+  .menu-toggle { display: block; }
+  .site-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: .5rem var(--gutter) 1rem; }
+  .site-nav.is-open { display: flex; }
+  .site-nav a { padding: .85rem 0; border-bottom: 1px solid var(--line); }
+  .projects { display: flex; flex-direction: column; }
+  .process { grid-template-columns: 1fr; }
+  .skills div { grid-template-columns: 1fr; gap: .25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="#top" aria-label="Stephanie Okala, back to top"> <span>Stephanie  Onyinyechukwu Okala</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="availability"><span class="dot" aria-hidden="true"></span><span id="availability-text"></span></p>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="top">
+      <div class="hero-text">
+        <h1>I build useful things for the web.</h1>
+        <p class="lede">I’m Stephanie Onyinyechukwu Okala, a web developer focused on building practical, user-friendly web applications. I enjoy turning ideas into working products, solving problems, and improving with every project.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#work">Explore my work</a>
+          <a class="btn btn-quiet" href="#contact">Get in touch</a>
+        </div>
+        <p class="location">Nigeria · Building for the web</p>
+      </div>
+
+      <figure class="portrait" id="portrait">
+        <!--
+          PHOTO: save your photograph as  assets/stephanie.jpg  (portrait orientation, about 1200 x 1500 px).
+          The placeholder below is replaced automatically when that file exists.
+          To use another filename, change PHOTO_PATH in the script section of this file.
+          Update the alt text in this file (PHOTO_ALT) to describe your real photo.
+        -->
+        <div class="portrait-frame">
+          <div class="portrait-placeholder">
+            <span>Your photograph goes here</span>
+            <small>assets/stephanie.jpg</small>
+          </div>
+        </div>
+        <figcaption>Stephanie Okala, Web Developer</figcaption>
+      </figure>
+    </section>
+
+    <section class="section container" id="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <h2 id="work-title">Selected work</h2>
+        <p>A collection of web applications and digital products I’ve designed, developed, and improved.</p>
+      </div>
+      <div class="projects" id="projects"></div>
+    </section>
+
+    <section class="section container about" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">A little about me</h2>
+      <div class="about-body">
+        <p>I enjoy building web applications, working through technical problems, and learning by making real projects. I studied Computer Science at Nnamdi Azikiwe University, Awka, and most of my projects so far have been built with PHP, MySQL, and Laravel.</p>
+        <p>I’m now expanding my JavaScript knowledge and learning Node.js, so I can build more of each product with confidence, from the interface to the server behind it.</p>
+        <p>I’m also an entrepreneur, which keeps me focused on what a product is for and who will use it.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills and technologies</h2>
+      <dl class="skills">
+        <div><dt>Backend</dt><dd>PHP, Laravel</dd></div>
+        <div><dt>Frontend</dt><dd>HTML5, CSS3, JavaScript</dd></div>
+        <div><dt>Database</dt><dd>MySQL</dd></div>
+        <div><dt>Tools</dt><dd>Git, GitHub, VS Code</dd></div>
+        <div><dt>Currently learning</dt><dd>Node.js</dd></div>
+      </dl>
+    </section>
+
+    <section class="section container" aria-labelledby="process-title">
+      <h2 id="process-title">How I work</h2>
+      <ol class="process">
+        <li><h3>Understand the problem.</h3><p>I start by understanding what a project needs to accomplish and who it is for.</p></li>
+        <li><h3>Build with purpose.</h3><p>I focus on useful functionality, clear structure, and an interface that makes sense to users.</p></li>
+        <li><h3>Improve continuously.</h3><p>I test, troubleshoot, learn, and refine my work as I build.</p></li>
+      </ol>
+    </section>
+
+    <section class="section container contact" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Have something in mind?</h2>
+      <p>If you’re building something useful or would like to connect, I’d be happy to hear from you.</p>
+      <ul class="contact-list" id="contact-list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Stephanie Onyinyechukwu Okala </p>
+      <p class="footer-links" id="footer-links"></p>
+      <p>Let's work!</p>
+    </div>
+  </footer>
+
+  <script>
+/* ==========================================================
+   1. SITE SETTINGS: edit these values (contact, photo, status)
+   ----------------------------------------------------------
+   - email:    your address, e.g. "you@example.com". The mailto link appears once filled in.
+   - github:   full profile URL, e.g. "https://github.com/your-username"
+   - linkedin: full profile URL, e.g. "https://www.linkedin.com/in/your-name"
+   - availability: short text in the header. Leave "" to hide it.
+   Empty strings are never turned into links.
+   ========================================================== */
+const SITE = {
+  email: "okalaonyinyechukwu@gmail.com",
+  github: "https://github.com/StephanieOkala",
+  linkedin: "https://www.linkedin.com/in/stephanie-onyinyechukwu-okala-523a0b323?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+  availability: "Open to Work and collaborate"
+};
+
+// Your portrait. Save the file here; it replaces the placeholder automatically.
+const PHOTO_PATH = "assets/stephanie.jpg";
+const PHOTO_ALT = "Portrait of Stephanie Okala"; // describe your real photo
+
+/* ==========================================================
+   2. PROJECTS: edit this list to manage your work
+   ----------------------------------------------------------
+   CHANGE A DESCRIPTION  Edit the text inside quotes for description / problem / features.
+   ADD A PROJECT         Copy one whole { ... }, paste it after a comma, and fill it in.
+   REMOVE A PROJECT      Delete its whole { ... } block (and its trailing comma).
+   REPLACE SCREENSHOTS   Put the image in the assets folder, then set
+                         image: "assets/your-file.jpg". Leave "" to show a text cover.
+   GITHUB LINK           Paste the repository URL into githubUrl: "https://github.com/..."
+   LIVE LINK             Paste the deployed URL into liveUrl: "https://..."
+   Links left as "" are hidden. Nothing is invented.
+   status:  optional, e.g. "In development", "Academic project". Use "" for none.
+   layout:  "featured" (full width), "wide", "narrow", or "third".
+   ========================================================== */
+const PROJECTS = [
+  {
+    title: "Unique: Salon Appointment System",
+    category: "Booking platform · Laravel",
+    layout: "featured",
+    description: "A salon appointment management website for Unique, a beauty business, that makes service discovery and appointment booking more organised.",
+    problem: "Salon services, prices and bookings are hard to manage when they live in messages and notebooks.",
+    features: [
+      "Salon service listings and pricing",
+      "Appointment booking forms",
+      "Customer account functionality",
+      "Administrative service management",
+      "Appointment management",
+      "Branded, responsive interface"
+    ],
+    technologies: ["Laravel", "PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    image: "assets/unique!.png", liveUrl: "", githubUrl: "https://github.com/StephanieOkala/unique-center.git", status: ""
+  },
+  {
+    title: "SupervisorSync",
+    category: "Academic software engineering project",
+    layout: "wide",
+    description: "Design and Implementation of a Web-Based Project Supervisor Allocation System for Master’s Students. An administrator-managed, rule-based process that allocates postgraduate students to project supervisors.",
+    problem: "Matching students to supervisors by hand is slow and ignores research area and supervisor capacity.",
+    features: [
+      "Student and supervisor accounts",
+      "Administrative allocation workflow",
+      "Research-area and lecturer-specialisation matching",
+      "Supervisor capacity considerations",
+      "Supervisor acceptance or rejection",
+      "Student view of allocation status"
+    ],
+    technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    image: "assets/sync4.png", liveUrl: "", githubUrl: "https://github.com/StephanieOkala/SupervisorSync.git", status: "Academic project"
+  },
+  {
+    title: "Empress Gadgets",
+    category: "E-commerce · PHP and MySQL",
+    layout: "narrow",
+    description: "An e-commerce application for a phone and gadgets store, built for product browsing and a structured shopping process.",
+    problem: "A gadgets store needs a clear way to show stock and take orders.",
+    features: [
+      "Product catalogue",
+      "User and administrator interfaces",
+      "Product image uploads",
+      "Shopping cart and checkout workflow",
+      "Order and invoice functionality"
+    ],
+    technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    image: "assets/gadget1.png", liveUrl: "", githubUrl: "https://github.com/StephanieOkala/empress-gadgets.git", status: ""
+  },
+  {
+    title: "Kingslay Wears",
+    category: "Catalogue website · Fashion",
+    layout: "third",
+    description: "A clothing catalogue for a fashion business, showing wholesale and retail products and making it easier for customers to explore items and enquire about purchases.",
+    problem: "Customers need to see what is available and ask about it quickly.",
+    features: ["Clothing catalogue and categories", "Wholesale and retail presentation", "Nationwide delivery information", "WhatsApp enquiry workflow, where implemented"],
+    technologies: ["HTML", "CSS", "JavaScript"],
+    image: "assets/king2.png", liveUrl: "https://stephanieokala.github.io/KingSlay-wears/", githubUrl: "", status: "Brand Project"
+  },
+  {
+    title: "Hospital Appointment System",
+    category: "Scheduling application",
+    layout: "third",
+    description: "A web-based appointment application that organises booking and patient-facing scheduling workflows.",
+    problem: "Booking appointments is easier when available slots are clear.",
+    features: ["Appointment scheduling interface", "Slot availability", "Organised booking workflow", "User-friendly interface"],
+    technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    image: "assets/med2.png", liveUrl: "", githubUrl: "https://github.com/StephanieOkala/Hospital-Appointment-System.git", status: "Health care project"
+  },
+  {
+    title: "Assignment Tracker",
+    category: "Productivity web app",
+    layout: "third",
+    description: "A web application that helps users organise and keep track of assignments and their associated information.",
+    problem: "Academic deadlines are easy to lose track of.",
+    features: ["Assignment management", "Structured task information", "User-related assignment records", "Clear tracking interface"],
+    technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    image: "assets/111.png", liveUrl: "", githubUrl: "https://github.com/StephanieOkala/Assignment-Tracker.git", status: ""
+  }
+];
+
+/* ==========================================================
+   3. RENDERING: you should not need to edit below this line
+   ========================================================== */
+document.documentElement.classList.add("js");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
+}
+
+function externalLink(label, url, ariaLabel) {
+  const a = el("a", "", label);
+  a.href = url;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.setAttribute("aria-label", ariaLabel);
+  return a;
+}
+
+function renderProject(p) {
+  const card = el("article", "project reveal is-" + (p.layout || "wide"));
+
+  const cover = el("figure", "project-cover");
+  if (p.image) {
+    const img = el("img");
+    img.src = p.image;
+    img.alt = "Screenshot of " + p.title;
+    img.loading = "lazy";
+    img.onerror = () => { cover.replaceChildren(el("div", "cover-fallback", p.title)); };
+    cover.appendChild(img);
+  } else {
+    cover.appendChild(el("div", "cover-fallback", p.title));
+  }
+
+  const body = el("div", "project-body");
+  const meta = el("p", "project-meta", p.category);
+  if (p.status) meta.appendChild(el("span", "project-status", p.status));
+  body.append(meta, el("h3", "", p.title), el("p", "project-desc", p.description));
+
+  if (p.problem) {
+    const prob = el("p", "project-problem");
+    prob.append(el("strong", "", "The problem: "), document.createTextNode(p.problem));
+    body.appendChild(prob);
+  }
+  if (p.features && p.features.length) {
+    const ul = el("ul", "project-features");
+    p.features.forEach(f => ul.appendChild(el("li", "", f)));
+    body.appendChild(ul);
+  }
+  body.appendChild(el("p", "project-tech", p.technologies.join(" · ")));
+
+  const links = el("div", "project-links");
+  if (p.liveUrl) links.appendChild(externalLink("Live Demo", p.liveUrl, "Live demo of " + p.title + " (opens in a new tab)"));
+  if (p.githubUrl) links.appendChild(externalLink("View Source", p.githubUrl, "View source code of " + p.title + " on GitHub (opens in a new tab)"));
+  if (links.children.length) body.appendChild(links);
+
+  card.append(cover, body);
+  return card;
+}
+
+document.getElementById("projects").append(...PROJECTS.map(renderProject));
+
+/* Header availability, contact links, footer */
+const availability = document.getElementById("availability-text");
+availability.textContent = SITE.availability;
+if (!SITE.availability) availability.parentElement.hidden = true;
+
+const contactList = document.getElementById("contact-list");
+const footerLinks = document.getElementById("footer-links");
+[
+  ["Email", SITE.email ? "mailto:" + SITE.email : "", SITE.email],
+  ["GitHub", SITE.github, "GitHub"],
+  ["LinkedIn", SITE.linkedin, "LinkedIn"]
+].forEach(([name, href, label]) => {
+  const li = el("li");
+  if (href) {
+    const a = el("a", "", label);
+    a.href = href;
+    if (name !== "Email") { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    li.appendChild(a);
+    if (name !== "Email") {
+      const f = a.cloneNode(true);
+      footerLinks.appendChild(f);
+    }
+  } else {
+    li.appendChild(el("span", "is-unset", name + ": add yours in index.html"));
+  }
+  contactList.appendChild(li);
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Portrait: swap the placeholder for the real photo if the file exists */
+const probe = new Image();
+probe.onload = () => {
+  probe.alt = PHOTO_ALT;
+  document.querySelector(".portrait-frame").replaceChildren(probe);
+};
+probe.src = PHOTO_PATH;
+
+/* Mobile menu */
+const toggle = document.querySelector(".menu-toggle");
+const nav = document.getElementById("site-nav");
+function setMenu(open) {
+  nav.classList.toggle("is-open", open);
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.textContent = open ? "Close" : "Menu";
+}
+toggle.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
+nav.addEventListener("click", e => { if (e.target.tagName === "A") setMenu(false); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && nav.classList.contains("is-open")) { setMenu(false); toggle.focus(); }
+});
+
+/* Gentle reveal for project cards only */
+const revealItems = document.querySelectorAll(".reveal");
+if (reducedMotion || !("IntersectionObserver" in window)) {
+  revealItems.forEach(i => i.classList.add("is-visible"));
+} else {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("is-visible"); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  revealItems.forEach(i => io.observe(i));
+}
+  </script>
+</body>
+</html>
